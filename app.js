@@ -14,9 +14,9 @@ const url = website + query
 request({url: url, json: true}, (error, response) => {
     // Parse authentication data
     const degrees = response.body.current.temperature
-    const precipitation = response.body.current.precip 
+    const feelsLike = response.body.current.feelslike 
 
-    const output = "It is " + degrees + " degrees and there are " + precipitation + " inches of precipitation."
+    const output = "It is " + degrees + " degrees and it feels like " + feelsLike + " degrees."
     console.log(output)
 
 })
