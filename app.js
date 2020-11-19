@@ -15,8 +15,10 @@ request({url: url, json: true}, (error, response) => {
     // Parse authentication data
     const degrees = response.body.current.temperature
     const feelsLike = response.body.current.feelslike 
+    const desc = response.body.current.weather_descriptions[0]
 
-    const output = "It is " + degrees + " degrees and it feels like " + feelsLike + " degrees."
+    const output = desc + ". It is " + degrees + " degrees and it feels like " + feelsLike + " degrees."
     console.log(output)
+
 
 })
