@@ -1,13 +1,13 @@
 const fs = require('fs')
 
-const GetAuthentication = () => {
+const GetAuthentication = (authKey) => {
     // Load data from JSON file for authentication
     const dataBuffer = fs.readFileSync('authentication.json')
     const dataJSON = dataBuffer.toString()
     const jsonString =  JSON.parse(dataJSON)  
 
     // Parse authentication data
-    const authenticationObject = jsonString.find((note) => note.title === "Key")
+    const authenticationObject = jsonString.find((note) => note.title === authKey)
 
     if (!authenticationObject) { 
         logError("Note not found!!!")
