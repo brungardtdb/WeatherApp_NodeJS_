@@ -11,19 +11,18 @@ if (!city || !state) {
     console.log("Please specify city and state!")
 } else {
 
-    gps.GetCoordinates(city, state, (error, data) => {
+    gps.GetCoordinates(city, state, (error, {location, latitude, longitude}) => {
 
         if (error) {
             console.log(error)        
         } else {
-            const {location, latitude, longitude} = data
-            weatherInfo.GetWeatherInfo(latitude, longitude, (error, weatherData) => {
+         
+            weatherInfo.GetWeatherInfo(latitude, longitude, (error, {degrees, feelsLike, desc}) => {
     
                 if(error){
                     console.log(error)
                 } else {
-                    
-                    const {degrees, feelsLike, desc} = weatherData
+
                     const output = location + " the weather right now is " +
                     desc + " It is currently "
                     + degrees + " degrees and it feels like "
