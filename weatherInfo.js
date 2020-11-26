@@ -20,7 +20,7 @@ const GetWeatherInfo = (lat, lon, callback) => {
     request({url: url, json: true}, (error, {body}) => {
 
         // Parse weather data
-        const {current} = body
+        const {temperature, feelslike, weather_descriptions} = body.current
         
             if (error) {
                 callback("Unable to connect to weather services!", undefined)
@@ -30,9 +30,9 @@ const GetWeatherInfo = (lat, lon, callback) => {
             else {
 
                 const data = {
-                    degrees: current.temperature,
-                    feelsLike: current.feelslike ,
-                    desc: current.weather_descriptions[0]
+                    degrees: temperature,
+                    feelsLike: feelslike ,
+                    desc: weather_descriptions[0]
                 }
                     callback(undefined, data)
                 }        
