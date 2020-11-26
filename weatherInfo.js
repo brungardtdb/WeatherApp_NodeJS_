@@ -1,11 +1,11 @@
 const request = require('request')
 const auth = require('./authentication.js')
 const weatherKey = "wKey"
+// Get authentication keys
+const weatherAuthentication = auth.GetAuthentication(weatherKey)
+
 
 const GetWeatherInfo = (lat, lon, callback) => {
-
-    // Get authentication keys
-    const weatherAuthentication = auth.GetAuthentication(weatherKey)
 
     //Create URL for weather app request
     //Broken into several strings should we choose to change anything in url
@@ -16,9 +16,7 @@ const GetWeatherInfo = (lat, lon, callback) => {
     const query = "current?access_key=" + encodeURIComponent(weatherAuthentication) + "&query=" + 
                 encodeURIComponent(location) + "&units=f"
     const url = website + query
-
-    console.log("PRINTING URL: " + url)
-
+    
     // Request weather data from weatherstack.com
     request({url: url, json: true}, (error, response) => {
         // Parse weather data
