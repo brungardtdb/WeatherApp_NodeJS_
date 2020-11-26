@@ -27,9 +27,7 @@ const GetCoordinates = async (city, state, callback) => {
 
             callback(undefined, data)            
         }
-
-    })
-    
+    })    
 }
 
 module.exports = {
