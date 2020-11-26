@@ -7,28 +7,33 @@ const arguements = process.argv
 const city = arguements[2]
 const state = arguements[3]
 
-gps.GetCoordinates(city, state, (error, data) => {
+if (!city || !state) {
+    console.log("Please specify city and state!")
+} else {
+    
+    gps.GetCoordinates(city, state, (error, data) => {
 
-    if (error) {
-        console.log(error)        
-    } else {
-
-        weatherInfo.GetWeatherInfo(data.latitude, data.longitude, (error, weatherData) => {
-
-            if(error){
-                console.log(error)
-            } else {
-
-                const output = data.location + " the weather right now is " +
-                weatherData.desc + " It is currently "
-                + weatherData.degrees + " degrees and it feels like "
-                + weatherData.feelsLike + " degrees."
-
-                console.log(output)
-            }
-        })
-    }    
-})
+        if (error) {
+            console.log(error)        
+        } else {
+    
+            weatherInfo.GetWeatherInfo(data.latitude, data.longitude, (error, weatherData) => {
+    
+                if(error){
+                    console.log(error)
+                } else {
+    
+                    const output = data.location + " the weather right now is " +
+                    weatherData.desc + " It is currently "
+                    + weatherData.degrees + " degrees and it feels like "
+                    + weatherData.feelsLike + " degrees."
+    
+                    console.log(output)
+                }
+            })
+        }    
+    })
+}
 
 
 
