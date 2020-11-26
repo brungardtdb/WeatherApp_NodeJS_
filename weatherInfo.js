@@ -4,7 +4,6 @@ const weatherKey = "wKey"
 // Get authentication keys
 const weatherAuthentication = auth.GetAuthentication(weatherKey)
 
-
 const GetWeatherInfo = (lat, lon, callback) => {
 
     //Create URL for weather app request
@@ -13,10 +12,10 @@ const GetWeatherInfo = (lat, lon, callback) => {
     const longitude = lon
     const website = "http://api.weatherstack.com/"
     const location = latitude + ", " + longitude // lat and long for Aurora Illinois
-    const query = "current?access_key=" + encodeURIComponent(weatherAuthentication) + "&query=" + 
-                encodeURIComponent(location) + "&units=f"
+    const query = "current?access_key=" + encodeURIComponent(weatherAuthentication) + 
+    "&query=" + encodeURIComponent(location) + "&units=f"
     const url = website + query
-    
+
     // Request weather data from weatherstack.com
     request({url: url, json: true}, (error, response) => {
         // Parse weather data
@@ -27,6 +26,7 @@ const GetWeatherInfo = (lat, lon, callback) => {
             callback('Unable to find location', undefined)
             }    
             else {
+
                 const data = {
                     degrees: response.body.current.temperature,
                     feelsLike: response.body.current.feelslike ,

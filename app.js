@@ -9,17 +9,21 @@ const tempLat = 41.763889
 const tempLong = -88.290001
 
 gps.GetCoordinates(tempCity, tempState, (error, data) => {
+
     if (error) {
-        console.log(error)
+        console.log(error)        
     } else {
-        
-        weatherInfo.GetWeatherInfo(data.latitude, data.longitude, (error, data) => {
+
+        weatherInfo.GetWeatherInfo(data.latitude, data.longitude, (error, weatherData) => {
+
             if(error){
                 console.log(error)
             } else {
-                const output = data.desc + " It is currently "
-                + data.degrees + " degrees and it feels like "
-                + data.feelsLike + " degrees."
+
+                const output = data.location + " the weather right now is " +
+                weatherData.desc + " It is currently "
+                + weatherData.degrees + " degrees and it feels like "
+                + weatherData.feelsLike + " degrees."
 
                 console.log(output)
             }
