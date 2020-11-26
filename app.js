@@ -11,13 +11,13 @@ if (!city || !state) {
     console.log("Please specify city and state!")
 } else {
 
-    gps.GetCoordinates(city, state, (error, {location, latitude, longitude}) => {
+    gps.GetCoordinates(city, state, (error, {location, latitude, longitude} = {}) => {
 
         if (error) {
             console.log(error)        
         } else {
          
-            weatherInfo.GetWeatherInfo(latitude, longitude, (error, {degrees, feelsLike, desc}) => {
+            weatherInfo.GetWeatherInfo(latitude, longitude, (error, {degrees, feelsLike, desc} = {}) => {
     
                 if(error){
                     console.log(error)

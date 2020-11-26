@@ -3,7 +3,7 @@ const auth = require('./authentication.js')
 const mapKey = "mapKey"
 const mapAuthentication = auth.GetAuthentication(mapKey)
 
-const GetCoordinates = async (city, state, callback) => {
+const GetCoordinates = (city, state, callback) => {
 
     // Create URL to fetch GPS coordinates
     const mapUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + encodeURIComponent(city) + "%20" + encodeURIComponent(state) 
