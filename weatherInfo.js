@@ -17,20 +17,22 @@ const GetWeatherInfo = (lat, lon, callback) => {
     const url = website + query
 
     // Request weather data from weatherstack.com
-    request({url: url, json: true}, (error, response) => {
+    request({url: url, json: true}, (error, {body}) => {
+
         // Parse weather data
-    
+        const {current} = body
+        
             if (error) {
                 callback("Unable to connect to weather services!", undefined)
-            } else if (response.body.error) {
+            } else if (body.error) {
             callback('Unable to find location', undefined)
             }    
             else {
 
                 const data = {
-                    degrees: response.body.current.temperature,
-                    feelsLike: response.body.current.feelslike ,
-                    desc: response.body.current.weather_descriptions[0]
+                    degrees: current.temperature,
+                    feelsLike: current.feelslike ,
+                    desc: current.weather_descriptions[0]
                 }
                     callback(undefined, data)
                 }        

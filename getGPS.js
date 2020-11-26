@@ -10,19 +10,19 @@ const GetCoordinates = (city, state, callback) => {
     + ".json?access_token=" + encodeURIComponent(mapAuthentication) + "&language=en&limit=1"
 
     // Request latitude and longitude from location
-    request({url: mapUrl, json: true}, (error, response) => {
-
+    request({url: mapUrl, json: true}, (error, {body}) => {
+        const {features, message} = body
         if (error) {
             callback("Unable to connect to location services!", undefined)
-        } else if (response.body.message === "Not Found") {
+        } else if (message === "Not Found") {
             callback("Location " + response.body.message, undefined)
         } else {
                  
             //Parse map data  
             const data = {
-                location: response.body.features[0].place_name,
-                latitude: response.body.features[0].center[1],
-                longitude: response.body.features[0].center[0]
+                location: features[0].place_name,
+                latitude: features[0].center[1],
+                longitude: features[0].center[0]
             }   
 
             callback(undefined, data)            
